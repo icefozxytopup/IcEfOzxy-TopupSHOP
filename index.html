@@ -1,0 +1,467 @@
+
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#f47732">
+<title>IcEfOzxy Topup | Angely Foxy Topup</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700;800&display=swap');
+
+:root {
+  --orange:#f47732;
+  --red:#e94b35;
+  --yellow:#ffd65a;
+  --dark:#252525;
+  --muted:#777;
+  --white:#fff;
+  --bg:#fffaf5;
+}
+
+* {
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+body {
+  font-family:'Prompt',sans-serif;
+  background:var(--bg);
+  color:var(--dark);
+}
+
+a {
+  color:inherit;
+  text-decoration:none;
+}
+
+button {
+  font-family:inherit;
+  cursor:pointer;
+}
+
+header {
+  position:sticky;
+  top:0;
+  z-index:10;
+  background:#ffffffed;
+  backdrop-filter:blur(12px);
+  border-bottom:1px solid #eee;
+}
+
+.nav {
+  max-width:1100px;
+  margin:auto;
+  padding:15px 20px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.logo {
+  font-size:21px;
+  font-weight:800;
+  color:var(--orange);
+}
+
+.logo span {
+  color:var(--red);
+}
+
+.nav-links {
+  display:flex;
+  gap:22px;
+  font-size:14px;
+}
+
+.nav-links a:hover {
+  color:var(--orange);
+}
+
+.hero {
+  max-width:1100px;
+  margin:35px auto;
+  padding:20px;
+}
+
+.hero-box {
+  min-height:310px;
+  border-radius:28px;
+  padding:45px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:20px;
+  overflow:hidden;
+  background:linear-gradient(120deg,#ff873b,#ed4937);
+  color:white;
+  position:relative;
+}
+
+.hero-content {
+  position:relative;
+  z-index:1;
+  max-width:600px;
+}
+
+.hero h1 {
+  font-size:clamp(30px,5vw,48px);
+  font-weight:800;
+  line-height:1.3;
+}
+
+.hero p {
+  margin-top:12px;
+  line-height:1.8;
+}
+
+.hero-fox {
+  font-size:125px;
+  filter:drop-shadow(0 10px 10px #8d2d2633);
+}
+
+.btn {
+  display:inline-block;
+  margin-top:22px;
+  padding:12px 24px;
+  background:var(--yellow);
+  color:#4b2b12;
+  border-radius:13px;
+  font-weight:700;
+  border:0;
+}
+
+.btn:hover {
+  transform:translateY(-2px);
+}
+
+.section {
+  max-width:1100px;
+  margin:65px auto;
+  padding:0 20px;
+}
+
+.section-title {
+  text-align:center;
+  margin-bottom:28px;
+}
+
+.section-title h2 {
+  font-size:27px;
+}
+
+.section-title p {
+  color:var(--muted);
+  font-size:14px;
+  margin-top:5px;
+}
+
+.grid {
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  gap:20px;
+}
+
+.card {
+  background:white;
+  border:1px solid #f0e8df;
+  padding:25px;
+  border-radius:20px;
+  box-shadow:0 5px 20px #5b30100a;
+}
+
+.game-icon {
+  width:65px;
+  height:65px;
+  background:#f4f4f4;
+  border-radius:18px;
+  display:grid;
+  place-items:center;
+  font-size:35px;
+  margin-bottom:15px;
+}
+
+.card h3 {
+  margin-bottom:8px;
+}
+
+.card p {
+  color:var(--muted);
+  font-size:14px;
+  line-height:1.8;
+}
+
+.stock {
+  display:inline-block;
+  margin-top:15px;
+  padding:6px 12px;
+  border-radius:20px;
+  background:#fff0e9;
+  color:#dc5634;
+  font-size:12px;
+  font-weight:600;
+}
+
+.wallet {
+  background:linear-gradient(135deg,#fff1df,#fff9ed);
+  border:1px solid #ffe0b9;
+}
+
+.wallet-number {
+  font-size:26px;
+  font-weight:800;
+  color:#d94e2c;
+  letter-spacing:1px;
+  margin:15px 0;
+}
+
+.copy-btn {
+  width:100%;
+  padding:12px;
+  background:var(--orange);
+  color:white;
+  border:0;
+  border-radius:12px;
+  font-weight:700;
+}
+
+.steps {
+  counter-reset:step;
+}
+
+.step {
+  display:flex;
+  gap:15px;
+  margin:18px 0;
+  align-items:flex-start;
+}
+
+.step-number {
+  flex-shrink:0;
+  width:38px;
+  height:38px;
+  display:grid;
+  place-items:center;
+  background:#fff0df;
+  color:var(--orange);
+  border-radius:12px;
+  font-weight:800;
+}
+
+.step p {
+  font-size:14px;
+  color:var(--muted);
+  line-height:1.8;
+}
+
+.contact {
+  text-align:center;
+  background:#fff0df;
+  border-radius:25px;
+  padding:40px 20px;
+}
+
+.contact h2 {
+  font-size:27px;
+}
+
+.contact p {
+  margin-top:10px;
+  color:#765d4b;
+  font-size:14px;
+}
+
+.line-btn {
+  display:inline-block;
+  background:#06c755;
+  color:white;
+  padding:13px 25px;
+  border-radius:13px;
+  font-weight:700;
+  margin-top:20px;
+}
+
+footer {
+  background:#282321;
+  color:#ddd;
+  text-align:center;
+  padding:30px 20px;
+  font-size:13px;
+  line-height:2;
+}
+
+footer strong {
+  color:#ff9b54;
+}
+
+@media(max-width:650px) {
+  .nav-links {
+    display:none;
+  }
+
+  .hero-box {
+    padding:30px 23px;
+    min-height:260px;
+  }
+
+  .hero-fox {
+    font-size:75px;
+  }
+
+  .wallet-number {
+    font-size:23px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <nav class="nav">
+    <div class="logo">🦊 Ice<span>fOzxy</span></div>
+    <div class="nav-links">
+      <a href="#home">หน้าแรก</a>
+      <a href="#games">เกม</a>
+      <a href="#payment">ชำระเงิน</a>
+      <a href="#contact">ติดต่อ</a>
+    </div>
+  </nav>
+</header>
+
+<main>
+
+<section class="hero" id="home">
+  <div class="hero-box">
+    <div class="hero-content">
+      <h1>IcEfOzxy Topup</h1>
+      <p>
+        Angely Foxy Topup<br>
+        ร้านเติมเกมของเจ้าจิ้งจอกเอง<br>
+        สะดวก ใส่ใจทุกออเดอร์
+      </p>
+      <a href="#games" class="btn">เลือกเกมเลย 🦊</a>
+    </div>
+    <div class="hero-fox">🦊</div>
+  </div>
+</section>
+
+<section class="section" id="games">
+  <div class="section-title">
+    <h2>🎮 เกมที่ให้บริการ</h2>
+    <p>เลือกเกมที่คุณต้องการเติม</p>
+  </div>
+
+  <div class="grid">
+    <div class="card">
+      <div class="game-icon">🎮</div>
+      <h3>Roblox</h3>
+      <p>บริการเกี่ยวกับ Roblox</p>
+      <span class="stock">สินค้าหมดชั่วคราว</span>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="payment">
+  <div class="section-title">
+    <h2>💳 ช่องทางชำระเงิน</h2>
+    <p>ชำระผ่าน TrueMoney Wallet</p>
+  </div>
+
+  <div class="grid">
+    <div class="card wallet">
+      <h3>🟠 TrueMoney Wallet</h3>
+      <p>หมายเลขวอลเล็ตสำหรับชำระเงิน</p>
+
+      <div class="wallet-number" id="walletNumber">
+        065-624-3549
+      </div>
+
+      <button class="copy-btn" onclick="copyWallet()">
+        📋 คัดลอกหมายเลข
+      </button>
+
+      <p style="margin-top:15px">
+        กรุณาตรวจสอบชื่อผู้รับและยอดเงินก่อนยืนยันการชำระ
+      </p>
+    </div>
+
+    <div class="card">
+      <h3>📌 วิธีสั่งซื้อ</h3>
+      <div class="steps">
+        <div class="step">
+          <div class="step-number">1</div>
+          <div>
+            <strong>ติดต่อร้าน</strong>
+            <p>แจ้งเกมและรายละเอียดที่ต้องการสั่งซื้อ</p>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-number">2</div>
+          <div>
+            <strong>ชำระเงิน</strong>
+            <p>ชำระตามยอดที่ร้านแจ้ง</p>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-number">3</div>
+          <div>
+            <strong>ส่งสลิป</strong>
+            <p>ส่งรูปหลักฐานผ่าน LINE OA ของร้าน</p>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-number">4</div>
+          <div>
+            <strong>รอตรวจสอบ</strong>
+            <p>แอดมินตรวจสอบเงินเข้าและตอบกลับในแชต</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="contact">
+  <div class="contact">
+    <h2>🦊 ติดต่อแอดมิน</h2>
+    <p>
+      มีคำถามหรือส่งหลักฐานการชำระเงิน<br>
+      ติดต่อแอดมินผ่าน LINE OA ได้เลย
+    </p>
+
+    <!-- เปลี่ยน YOUR_LINE_OA_URL เป็นลิงก์ LINE OA จริง -->
+    <a class="line-btn" href="https://line.me/" target="_blank" rel="noopener">
+      เพิ่มเพื่อน LINE OA
+    </a>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <strong>IcEfOzxy Topup</strong><br>
+  Angely Foxy Topup — ร้านเติมเกมของเจ้าจิ้งจอกเอง<br>
+  © 2026 All Rights Reserved.
+</footer>
+
+<script>
+function copyWallet() {
+  const number = "0656243549";
+
+  if (navigator.clipboard && window.isSecureContext) {
+    navigator.clipboard.writeText(number)
+      .then(() => alert("คัดลอกหมายเลข TrueMoney แล้ว!"))
+      .catch(() => alert("ไม่สามารถคัดลอกได้ กรุณาคัดลอกหมายเลขด้วยตนเอง"));
+  } else {
+    alert("หมายเลข TrueMoney: " + number);
+  }
+}
+</script>
+
+</body>
+</html>
