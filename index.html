@@ -6,7 +6,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#f15b22">
 <title>IcEfOzxy Topup | Angely Foxy Topup</title>
-
 <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
 <style>
@@ -26,20 +25,18 @@
   padding:0;
 }
 
+html { scroll-behavior:smooth; }
+
 body {
   font-family:'Prompt',sans-serif;
   background:var(--cream);
   color:var(--dark);
 }
 
-button,a {
-  font-family:inherit;
-}
+body.menu-open { overflow:hidden; }
 
-button {
-  cursor:pointer;
-  border:none;
-}
+button,a { font-family:inherit; }
+button { cursor:pointer; border:none; }
 
 header {
   position:sticky;
@@ -51,6 +48,21 @@ header {
   display:flex;
   align-items:center;
   justify-content:space-between;
+}
+
+.header-left {
+  display:flex;
+  align-items:center;
+  gap:15px;
+}
+
+.menu-toggle {
+  width:42px;
+  height:42px;
+  border-radius:12px;
+  background:#fff0e5;
+  color:var(--orange);
+  font-size:23px;
 }
 
 .brand {
@@ -67,9 +79,7 @@ header {
   object-fit:contain;
 }
 
-.brand span {
-  color:var(--orange);
-}
+.brand span { color:var(--orange); }
 
 .header-contact {
   background:var(--orange);
@@ -80,6 +90,99 @@ header {
   font-size:13px;
   font-weight:600;
 }
+
+/* SIDEBAR */
+
+.sidebar-overlay {
+  position:fixed;
+  inset:0;
+  z-index:29;
+  background:#0008;
+  opacity:0;
+  visibility:hidden;
+  transition:.25s;
+}
+
+.sidebar-overlay.active {
+  opacity:1;
+  visibility:visible;
+}
+
+.sidebar {
+  position:fixed;
+  z-index:30;
+  top:0;
+  left:0;
+  width:280px;
+  height:100%;
+  background:white;
+  padding:25px 18px;
+  transform:translateX(-100%);
+  transition:.3s ease;
+  box-shadow:5px 0 25px #00000012;
+}
+
+.sidebar.active { transform:translateX(0); }
+
+.sidebar-top {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:30px;
+}
+
+.sidebar-top h2 {
+  color:var(--orange);
+  font-size:19px;
+}
+
+.close-sidebar {
+  width:35px;
+  height:35px;
+  border-radius:10px;
+  background:#fff0e5;
+  color:var(--red);
+  font-size:20px;
+}
+
+.sidebar-label {
+  color:#aaa;
+  font-size:11px;
+  margin:20px 10px 8px;
+}
+
+.sidebar a {
+  display:flex;
+  align-items:center;
+  gap:12px;
+  padding:13px 14px;
+  border-radius:12px;
+  text-decoration:none;
+  color:var(--dark);
+  font-size:14px;
+  margin:5px 0;
+  transition:.2s;
+}
+
+.sidebar a:hover {
+  background:#fff0e5;
+  color:var(--orange);
+}
+
+.sidebar-footer {
+  position:absolute;
+  bottom:25px;
+  left:20px;
+  right:20px;
+  padding:14px;
+  background:var(--cream);
+  border-radius:13px;
+  font-size:12px;
+  color:var(--gray);
+  text-align:center;
+}
+
+/* HERO */
 
 .hero {
   min-height:330px;
@@ -93,9 +196,7 @@ header {
   color:white;
 }
 
-.hero-content {
-  max-width:600px;
-}
+.hero-content { max-width:600px; }
 
 .hero h1 {
   font-size:clamp(30px,5vw,48px);
@@ -103,9 +204,7 @@ header {
   margin-bottom:12px;
 }
 
-.hero h1 span {
-  color:var(--yellow);
-}
+.hero h1 span { color:var(--yellow); }
 
 .hero p {
   color:#fff1e8;
@@ -139,6 +238,8 @@ header {
   font-size:13px;
   margin-bottom:22px;
 }
+
+/* PRODUCT CARDS */
 
 .product-grid {
   display:grid;
@@ -184,9 +285,7 @@ header {
   margin-top:10px;
 }
 
-.price small {
-  font-size:13px;
-}
+.price small { font-size:13px; }
 
 .stock {
   display:inline-block;
@@ -215,14 +314,69 @@ header {
   font-weight:600;
 }
 
-.buy-btn:hover {
-  background:var(--red);
-}
+.buy-btn:hover { background:var(--red); }
 
 .buy-btn:disabled {
   background:#bdb5ae;
   cursor:not-allowed;
 }
+
+/* DATA TABLE */
+
+.table-wrapper {
+  width:100%;
+  overflow-x:auto;
+  background:white;
+  border-radius:16px;
+  border:1px solid #f0e5d9;
+  box-shadow:0 5px 20px #00000008;
+}
+
+.data-table {
+  width:100%;
+  min-width:600px;
+  border-collapse:collapse;
+  font-size:13px;
+}
+
+.data-table th {
+  background:#fff0e5;
+  color:#9b3518;
+  text-align:left;
+  padding:15px;
+  font-weight:700;
+}
+
+.data-table td {
+  padding:14px 15px;
+  border-bottom:1px solid #f1eee9;
+}
+
+.data-table tr:last-child td { border-bottom:none; }
+
+.data-table tr:hover td { background:#fffaf4; }
+
+.table-status {
+  display:inline-block;
+  padding:5px 10px;
+  border-radius:20px;
+  background:#e7f8e9;
+  color:var(--green);
+  font-size:11px;
+  white-space:nowrap;
+}
+
+.table-status.sold {
+  background:#ffe8e5;
+  color:#c52d22;
+}
+
+.table-price {
+  font-weight:700;
+  color:var(--red);
+}
+
+/* PANELS */
 
 .panel {
   background:white;
@@ -233,9 +387,7 @@ header {
   box-shadow:0 5px 20px #00000008;
 }
 
-.hidden {
-  display:none!important;
-}
+.hidden { display:none!important; }
 
 .order-summary {
   background:#fff5e9;
@@ -247,9 +399,7 @@ header {
   font-size:14px;
 }
 
-.order-summary strong {
-  color:var(--red);
-}
+.order-summary strong { color:var(--red); }
 
 .wallet-number {
   background:#fff5e9;
@@ -335,6 +485,57 @@ header {
   margin-top:15px;
 }
 
+/* ACCORDION */
+
+.accordion {
+  display:grid;
+  gap:10px;
+  margin-top:18px;
+}
+
+.accordion details {
+  background:white;
+  border:1px solid #f0e5d9;
+  border-radius:13px;
+  overflow:hidden;
+}
+
+.accordion summary {
+  list-style:none;
+  cursor:pointer;
+  padding:16px;
+  font-size:14px;
+  font-weight:600;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:10px;
+}
+
+.accordion summary::-webkit-details-marker { display:none; }
+
+.accordion summary::after {
+  content:"+";
+  font-size:22px;
+  color:var(--orange);
+}
+
+.accordion details[open] summary::after { content:"−"; }
+
+.accordion details[open] summary {
+  color:var(--orange);
+  background:#fffaf4;
+}
+
+.accordion-content {
+  padding:0 16px 16px;
+  color:var(--gray);
+  font-size:13px;
+  line-height:1.9;
+}
+
+/* FOOTER */
+
 footer {
   background:#2b211d;
   color:white;
@@ -349,10 +550,12 @@ footer p {
   line-height:2;
 }
 
+/* MODAL */
+
 .modal {
   position:fixed;
   inset:0;
-  z-index:20;
+  z-index:40;
   background:#0009;
   display:grid;
   place-items:center;
@@ -388,17 +591,18 @@ footer p {
 }
 
 @media(max-width:500px) {
-  header {
-    padding:10px 4%;
-  }
+  header { padding:10px 4%; }
 
-  .brand {
-    font-size:18px;
-  }
+  .brand { font-size:18px; }
 
   .brand img {
     width:38px;
     height:38px;
+  }
+
+  .header-contact {
+    padding:8px 12px;
+    font-size:12px;
   }
 
   .hero {
@@ -411,47 +615,71 @@ footer p {
     gap:11px;
   }
 
-  .product {
-    padding:13px;
-  }
+  .product { padding:13px; }
 
   .product-icon {
     height:80px;
     font-size:43px;
   }
 
-  .product h3 {
-    font-size:15px;
-  }
+  .product h3 { font-size:15px; }
 
-  .price {
-    font-size:21px;
-  }
+  .price { font-size:21px; }
+
+  .container { width:92%; }
+
+  .panel { padding:16px; }
 }
 </style>
 </head>
 
 <body>
 
-<header>
-  <div class="brand">
-    <img src="images/icon.png" alt="IcEfOzxy Logo">
-    <div>Ice<span>fOzxy</span></div>
+<!-- SIDEBAR -->
+<div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar(false)"></div>
+
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-top">
+    <h2>🦊 IcEfOzxy Menu</h2>
+    <button class="close-sidebar" onclick="toggleSidebar(false)">×</button>
   </div>
 
-  <a class="header-contact"
-     href="https://lin.ee/QnALKLF"
-     target="_blank">
+  <p class="sidebar-label">เมนูหลัก</p>
+  <a href="#home" onclick="toggleSidebar(false)">🏠 หน้าแรก</a>
+  <a href="#products" onclick="toggleSidebar(false)">🛒 แพ็กเกจ Robux</a>
+  <a href="#dataTable" onclick="toggleSidebar(false)">📊 ตารางราคา</a>
+  <a href="#order" onclick="toggleSidebar(false)">📦 รายการสั่งซื้อ</a>
+  <a href="#howto" onclick="toggleSidebar(false)">📌 วิธีใช้บริการ</a>
+  <a href="#faq" onclick="toggleSidebar(false)">❓ คำถามที่พบบ่อย</a>
+  <a href="https://lin.ee/QnALKLF" target="_blank" rel="noopener">💬 ติดต่อ LINE OA</a>
+
+  <div class="sidebar-footer">
+    Angely Foxy Topup<br>
+    ร้านเติมเกมของเจ้าจิ้งจอกเอง 🦊
+  </div>
+</aside>
+
+<header>
+  <div class="header-left">
+    <button class="menu-toggle" onclick="toggleSidebar()" aria-label="เปิดเมนู">☰</button>
+    <div class="brand">
+      <img src="images/icon.png" alt="IcEfOzxy Logo">
+      <div>Ice<span>fOzxy</span></div>
+    </div>
+  </div>
+
+  <a class="header-contact" href="https://lin.ee/QnALKLF" target="_blank" rel="noopener">
     ติดต่อร้าน
   </a>
 </header>
 
-<section class="hero">
+<section class="hero" id="home">
   <div class="hero-content">
     <h1>Welcome to<br><span>IcEfOzxy Topup</span></h1>
     <p>
       ร้านเติมเกมของเจ้าจิ้งจอกเอง 🦊<br>
-      สะดวก ใส่ใจทุกออเดอร์ พร้อมให้บริการ ถ้าหากต้องการเติมแพ็คอื่นให้ทัก Line OA
+      สะดวก ใส่ใจทุกออเดอร์ พร้อมให้บริการ
+      ถ้าหากต้องการเติมแพ็คอื่นให้ทัก Line OA
     </p>
     <a href="#products" class="hero-btn">เลือกแพ็กเกจเลย</a>
   </div>
@@ -459,11 +687,10 @@ footer p {
 
 <main class="container">
 
+  <!-- PRODUCTS -->
   <section id="products">
     <h2 class="section-title">🛒 Roblox Robux</h2>
-    <p class="section-subtitle">
-      เลือกแพ็กเกจที่ต้องการ ราคาจะแสดงตามวิธีเติม
-    </p>
+    <p class="section-subtitle">เลือกแพ็กเกจที่ต้องการ ราคาจะแสดงตามวิธีเติม</p>
 
     <div class="product-grid">
 
@@ -473,10 +700,7 @@ footer p {
         <p>Username เท่านั้น</p>
         <div class="price">6 <small>บาท</small></div>
         <span class="stock">● มีสินค้า</span>
-        <button class="buy-btn"
-          onclick="selectPackage(10,'Username',6)">
-          เลือกแพ็กเกจ
-        </button>
+        <button class="buy-btn" onclick="selectPackage(10,'Username',6)">เลือกแพ็กเกจ</button>
       </div>
 
       <div class="product">
@@ -485,10 +709,7 @@ footer p {
         <p>Username เท่านั้น</p>
         <div class="price">12 <small>บาท</small></div>
         <span class="stock">● มีสินค้า</span>
-        <button class="buy-btn"
-          onclick="selectPackage(20,'Username',12)">
-          เลือกแพ็กเกจ
-        </button>
+        <button class="buy-btn" onclick="selectPackage(20,'Username',12)">เลือกแพ็กเกจ</button>
       </div>
 
       <div class="product">
@@ -497,10 +718,7 @@ footer p {
         <p>Username</p>
         <div class="price">39 <small>บาท</small></div>
         <span class="stock">● มีสินค้า</span>
-        <button class="buy-btn"
-          onclick="selectPackage(80,'Username',39)">
-          เลือกแพ็กเกจ
-        </button>
+        <button class="buy-btn" onclick="selectPackage(80,'Username',39)">เลือกแพ็กเกจ</button>
       </div>
 
       <div class="product">
@@ -509,10 +727,7 @@ footer p {
         <p>ID-PASS</p>
         <div class="price">31 <small>บาท</small></div>
         <span class="stock">● มีสินค้า</span>
-        <button class="buy-btn"
-          onclick="selectPackage(80,'ID-PASS',31)">
-          เลือกแพ็กเกจ
-        </button>
+        <button class="buy-btn" onclick="selectPackage(80,'ID-PASS',31)">เลือกแพ็กเกจ</button>
       </div>
 
       <div class="product">
@@ -521,9 +736,7 @@ footer p {
         <p>Username</p>
         <div class="price">60 <small>บาท</small></div>
         <span class="stock out-stock">● สินค้าหมดชั่วคราว</span>
-        <button class="buy-btn" disabled>
-          สินค้าหมด
-        </button>
+        <button class="buy-btn" disabled>สินค้าหมด</button>
       </div>
 
       <div class="product">
@@ -532,26 +745,78 @@ footer p {
         <p>ID-PASS</p>
         <div class="price">54 <small>บาท</small></div>
         <span class="stock">● มีสินค้า</span>
-        <button class="buy-btn"
-          onclick="selectPackage(120,'ID-PASS',54)">
-          เลือกแพ็กเกจ
-        </button>
+        <button class="buy-btn" onclick="selectPackage(120,'ID-PASS',54)">เลือกแพ็กเกจ</button>
       </div>
 
     </div>
 
     <div class="notice">
       หมายเหตุ: แพ็กเกจ Username เป็นบริการที่มีเงื่อนไข Roblox Plus
-      ตามรายละเอียดของร้าน โปรดตรวจสอบเงื่อนไขและค่าใช้จ่ายที่เกี่ยวข้อง
-      ก่อนสั่งซื้อ
+      ตามรายละเอียดของร้าน โปรดตรวจสอบเงื่อนไขและค่าใช้จ่ายที่เกี่ยวข้องก่อนสั่งซื้อ
     </div>
   </section>
 
+  <!-- DATA TABLE -->
+  <section id="dataTable" style="margin-top:45px">
+    <h2 class="section-title">📊 ตารางราคาแพ็กเกจ</h2>
+    <p class="section-subtitle">เปรียบเทียบจำนวน Robux วิธีเติม ราคา และสถานะสินค้า</p>
+
+    <div class="table-wrapper">
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>แพ็กเกจ</th>
+            <th>วิธีเติม</th>
+            <th>ราคา</th>
+            <th>สถานะ</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>10 Robux</td>
+            <td>Username</td>
+            <td class="table-price">6 บาท</td>
+            <td><span class="table-status">มีสินค้า</span></td>
+          </tr>
+          <tr>
+            <td>20 Robux</td>
+            <td>Username</td>
+            <td class="table-price">12 บาท</td>
+            <td><span class="table-status">มีสินค้า</span></td>
+          </tr>
+          <tr>
+            <td>80 Robux</td>
+            <td>Username</td>
+            <td class="table-price">39 บาท</td>
+            <td><span class="table-status">มีสินค้า</span></td>
+          </tr>
+          <tr>
+            <td>80 Robux</td>
+            <td>ID-PASS</td>
+            <td class="table-price">31 บาท</td>
+            <td><span class="table-status">มีสินค้า</span></td>
+          </tr>
+          <tr>
+            <td>120 Robux</td>
+            <td>Username</td>
+            <td class="table-price">60 บาท</td>
+            <td><span class="table-status sold">สินค้าหมด</span></td>
+          </tr>
+          <tr>
+            <td>120 Robux</td>
+            <td>ID-PASS</td>
+            <td class="table-price">54 บาท</td>
+            <td><span class="table-status">มีสินค้า</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ORDER -->
   <section id="order" class="panel hidden">
     <h2 class="section-title">🦊 สรุปรายการสั่งซื้อ</h2>
-    <p class="section-subtitle">
-      ตรวจสอบแพ็กเกจก่อนติดต่อแอดมิน
-    </p>
+    <p class="section-subtitle">ตรวจสอบแพ็กเกจก่อนติดต่อแอดมิน</p>
 
     <div class="order-summary">
       สินค้า: <strong id="summaryRobux">-</strong><br>
@@ -565,78 +830,92 @@ footer p {
 
       <div class="wallet-number">
         <strong>065-624-3549</strong>
-        <button class="copy-btn" onclick="copyWallet()">
-          คัดลอกเบอร์
-        </button>
+        <button class="copy-btn" onclick="copyWallet()">คัดลอกเบอร์</button>
       </div>
 
-      <p class="info">
-        ชื่อบัญชีผู้รับ: วริทธิ์นันท์ โชติช่วง
-      </p>
+      <p class="info">ชื่อบัญชีผู้รับ: วริทธิ์นันท์ โชติช่วง</p>
     </div>
 
     <div class="panel">
       <h3>📋 ขั้นตอนการสั่งซื้อ</h3>
 
       <div class="steps">
-        <div class="step">
-          <span class="step-number">1</span>
-          <p>เลือกแพ็กเกจและตรวจสอบราคา</p>
-        </div>
-
-        <div class="step">
-          <span class="step-number">2</span>
-          <p>ชำระเงินตามยอดที่เลือก</p>
-        </div>
-
-        <div class="step">
-          <span class="step-number">3</span>
-          <p>ส่งสลิปและแจ้งรายละเอียดแพ็กเกจผ่าน LINE OA</p>
-        </div>
-
-        <div class="step">
-          <span class="step-number">4</span>
-          <p>รอแอดมินตรวจสอบและดำเนินการ</p>
-        </div>
+        <div class="step"><span class="step-number">1</span><p>เลือกแพ็กเกจและตรวจสอบราคา</p></div>
+        <div class="step"><span class="step-number">2</span><p>ชำระเงินตามยอดที่เลือก</p></div>
+        <div class="step"><span class="step-number">3</span><p>ส่งสลิปและแจ้งรายละเอียดแพ็กเกจผ่าน LINE OA</p></div>
+        <div class="step"><span class="step-number">4</span><p>รอแอดมินตรวจสอบและดำเนินการ</p></div>
       </div>
 
-      <a id="lineOrder" class="line-btn"
-         href="https://lin.ee/QnALKLF"
-         target="_blank">
+      <a id="lineOrder" class="line-btn" href="https://lin.ee/QnALKLF" target="_blank" rel="noopener">
         ติดต่อแอดมินผ่าน LINE
       </a>
 
       <div class="notice">
-        กรุณารอแอดมินตรวจสอบยอดเงินที่ได้รับจริง
-        ก่อนดำเนินการ การส่งสลิปเพียงอย่างเดียว
-        ไม่ได้ยืนยันว่าชำระเงินสำเร็จ
+        กรุณารอแอดมินตรวจสอบยอดเงินที่ได้รับจริงก่อนดำเนินการ
+        การส่งสลิปเพียงอย่างเดียวไม่ได้ยืนยันว่าชำระเงินสำเร็จ
       </div>
     </div>
   </section>
 
-  <section class="panel">
+  <!-- HOW TO -->
+  <section class="panel" id="howto">
     <h2 class="section-title">📌 วิธีใช้บริการ</h2>
-
     <div class="steps">
-      <div class="step">
-        <span class="step-number">1</span>
-        <p>เลือกแพ็กเกจ Robux ที่ต้องการ</p>
-      </div>
+      <div class="step"><span class="step-number">1</span><p>เลือกแพ็กเกจ Robux ที่ต้องการ</p></div>
+      <div class="step"><span class="step-number">2</span><p>ตรวจสอบราคาและวิธีเติม</p></div>
+      <div class="step"><span class="step-number">3</span><p>ติดต่อแอดมินเพื่อดำเนินการสั่งซื้อ</p></div>
+      <div class="step"><span class="step-number">4</span><p>รอแอดมินตรวจสอบและส่งมอบ Robux</p></div>
+    </div>
+  </section>
 
-      <div class="step">
-        <span class="step-number">2</span>
-        <p>ตรวจสอบราคาและวิธีเติม</p>
-      </div>
+  <!-- ACCORDION -->
+  <section class="panel" id="faq">
+    <h2 class="section-title">❓ คำถามที่พบบ่อย</h2>
+    <p class="section-subtitle">กดหัวข้อเพื่ออ่านรายละเอียดเพิ่มเติม</p>
 
-      <div class="step">
-        <span class="step-number">3</span>
-        <p>ติดต่อแอดมินเพื่อดำเนินการสั่งซื้อ</p>
-      </div>
+    <div class="accordion">
 
-      <div class="step">
-        <span class="step-number">4</span>
-        <p>รอแอดมินตรวจสอบและส่งมอบ Robux</p>
-      </div>
+      <details>
+        <summary>🦊 ต้องเริ่มสั่งซื้ออย่างไร?</summary>
+        <div class="accordion-content">
+          เลือกแพ็กเกจที่ต้องการ ตรวจสอบราคา
+          จากนั้นติดต่อแอดมินผ่าน LINE OA เพื่อแจ้งรายการสั่งซื้อ
+        </div>
+      </details>
+
+      <details>
+        <summary>💰 ชำระเงินผ่านช่องทางใด?</summary>
+        <div class="accordion-content">
+          ร้านแจ้งช่องทาง TrueMoney Wallet ในส่วนสรุปรายการสั่งซื้อ
+          โปรดตรวจสอบชื่อผู้รับและยอดเงินก่อนชำระทุกครั้ง
+        </div>
+      </details>
+
+      <details>
+        <summary>📦 ถ้าต้องการแพ็กเกจอื่นทำอย่างไร?</summary>
+        <div class="accordion-content">
+          สามารถติดต่อร้านผ่าน LINE OA เพื่อสอบถามแพ็กเกจอื่น
+          และตรวจสอบราคาและเงื่อนไขก่อนสั่งซื้อได้
+        </div>
+      </details>
+
+      <details>
+        <summary>⏳ หลังชำระเงินต้องทำอย่างไร?</summary>
+        <div class="accordion-content">
+          ติดต่อแอดมินพร้อมแจ้งรายการสั่งซื้อ
+          และรอแอดมินตรวจสอบยอดเงินที่ได้รับจริงก่อนดำเนินการ
+        </div>
+      </details>
+
+      <details>
+        <summary>🔐 ร้านต้องการรหัสผ่านหรือ OTP หรือไม่?</summary>
+        <div class="accordion-content">
+          อย่าส่งรหัสผ่านหรือ OTP ผ่านเว็บไซต์หรือแชต
+          รหัสเหล่านี้เป็นข้อมูลลับที่ใช้ปกป้องบัญชีของคุณ
+          ควรใช้ช่องทางเติมเงินที่ไม่ต้องเปิดเผยข้อมูลเข้าสู่ระบบ
+        </div>
+      </details>
+
     </div>
   </section>
 
@@ -649,6 +928,7 @@ footer p {
   <p>© 2026 IcEfOzxy Topup</p>
 </footer>
 
+<!-- MODAL -->
 <div id="successModal" class="modal hidden">
   <div class="modal-box">
     <h2>เรียบร้อยแล้ว! 🦊</h2>
@@ -660,21 +940,34 @@ footer p {
 <script>
 let selectedPackage = null;
 
+function toggleSidebar(force) {
+  const sidebar = document.getElementById("sidebar");
+  const overlay = document.getElementById("sidebarOverlay");
+
+  const shouldOpen = typeof force === "boolean"
+    ? force
+    : !sidebar.classList.contains("active");
+
+  sidebar.classList.toggle("active", shouldOpen);
+  overlay.classList.toggle("active", shouldOpen);
+  document.body.classList.toggle("menu-open", shouldOpen);
+}
+
+document.addEventListener("keydown", function(event) {
+  if (event.key === "Escape") {
+    toggleSidebar(false);
+    closeModal();
+  }
+});
+
 function selectPackage(robux, method, price) {
-  selectedPackage = {
-    robux: robux,
-    method: method,
-    price: price
-  };
+  selectedPackage = { robux, method, price };
 
   document.getElementById("summaryRobux").textContent =
     robux + " Robux";
 
-  document.getElementById("summaryMethod").textContent =
-    method;
-
-  document.getElementById("summaryPrice").textContent =
-    price + " บาท";
+  document.getElementById("summaryMethod").textContent = method;
+  document.getElementById("summaryPrice").textContent = price + " บาท";
 
   const message =
     "สวัสดีครับ สนใจสั่งซื้อ IcEfOzxy Topup\n" +
@@ -689,11 +982,12 @@ function selectPackage(robux, method, price) {
 
   document.getElementById("lineOrder").href = lineUrl;
 
-  document.getElementById("order").classList.remove("hidden");
+  const order = document.getElementById("order");
+  order.classList.remove("hidden");
 
-  document.getElementById("order").scrollIntoView({
-    behavior: "smooth",
-    block: "start"
+  order.scrollIntoView({
+    behavior:"smooth",
+    block:"start"
   });
 }
 
