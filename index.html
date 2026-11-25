@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="th">
 <head>
@@ -10,701 +11,328 @@
 <style>
 :root {
   --orange:#f15b22;
-  --red:#d9361e;
-  --yellow:#ffca45;
-  --cream:#fff8ed;
-  --dark:#29221f;
+  --orange2:#ff884d;
+  --dark:#24201e;
+  --cream:#fff8f1;
+  --white:#ffffff;
   --gray:#777;
-  --green:#21843b;
+  --border:#f0e2d8;
 }
-
-* {
-  box-sizing:border-box;
-  margin:0;
-  padding:0;
-}
-
-html { scroll-behavior:smooth; }
-
+* {box-sizing:border-box}
 body {
+  margin:0;
   font-family:'Prompt',sans-serif;
   background:var(--cream);
   color:var(--dark);
 }
-
-body.menu-open { overflow:hidden; }
-
-button,a { font-family:inherit; }
-button { cursor:pointer; border:none; }
-
+button,a {font-family:inherit}
+button {cursor:pointer}
 header {
+  background:white;
+  border-bottom:1px solid var(--border);
+  padding:14px 6%;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
   position:sticky;
   top:0;
   z-index:10;
-  background:white;
-  box-shadow:0 3px 15px #0000000d;
-  padding:12px 6%;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
 }
-
-.header-left {
-  display:flex;
-  align-items:center;
-  gap:15px;
-}
-
-.menu-toggle {
-  width:42px;
-  height:42px;
-  border-radius:12px;
-  background:#fff0e5;
-  color:var(--orange);
-  font-size:23px;
-}
-
-.brand {
-  display:flex;
-  align-items:center;
-  gap:10px;
-  font-size:22px;
-  font-weight:800;
-}
-
-.brand img {
-  width:45px;
-  height:45px;
-  object-fit:contain;
-}
-
-.brand span { color:var(--orange); }
-
-.header-contact {
-  background:var(--orange);
-  color:white;
-  padding:9px 17px;
-  border-radius:30px;
-  text-decoration:none;
-  font-size:13px;
-  font-weight:600;
-}
-
-/* SIDEBAR */
-
-.sidebar-overlay {
-  position:fixed;
-  inset:0;
-  z-index:29;
-  background:#0008;
-  opacity:0;
-  visibility:hidden;
-  transition:.25s;
-}
-
-.sidebar-overlay.active {
-  opacity:1;
-  visibility:visible;
-}
-
-.sidebar {
-  position:fixed;
-  z-index:30;
-  top:0;
-  left:0;
-  width:280px;
-  height:100%;
-  background:white;
-  padding:25px 18px;
-  transform:translateX(-100%);
-  transition:.3s ease;
-  box-shadow:5px 0 25px #00000012;
-}
-
-.sidebar.active { transform:translateX(0); }
-
-.sidebar-top {
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  margin-bottom:30px;
-}
-
-.sidebar-top h2 {
-  color:var(--orange);
-  font-size:19px;
-}
-
-.close-sidebar {
-  width:35px;
-  height:35px;
-  border-radius:10px;
-  background:#fff0e5;
-  color:var(--red);
+.logo {
   font-size:20px;
+  font-weight:800;
+  color:var(--orange);
 }
-
-.sidebar-label {
-  color:#aaa;
-  font-size:11px;
-  margin:20px 10px 8px;
-}
-
-.sidebar a {
-  display:flex;
-  align-items:center;
-  gap:12px;
-  padding:13px 14px;
-  border-radius:12px;
+.logo span {color:var(--dark)}
+nav {display:flex;gap:18px}
+nav a {
   text-decoration:none;
   color:var(--dark);
-  font-size:14px;
-  margin:5px 0;
-  transition:.2s;
+  font-size:13px;
 }
-
-.sidebar a:hover {
-  background:#fff0e5;
-  color:var(--orange);
-}
-
-.sidebar-footer {
-  position:absolute;
-  bottom:25px;
-  left:20px;
-  right:20px;
-  padding:14px;
-  background:var(--cream);
-  border-radius:13px;
-  font-size:12px;
-  color:var(--gray);
-  text-align:center;
-}
-
-/* HERO */
-
 .hero {
-  min-height:330px;
   padding:55px 7%;
-  display:flex;
-  align-items:center;
-  background:
-    linear-gradient(90deg,#24150de8,#24150d66),
-    url("images/banner.png") center/cover no-repeat,
-    linear-gradient(135deg,#f15b22,#ffb33c);
-  color:white;
-}
-
-.hero-content { max-width:600px; }
-
-.hero h1 {
-  font-size:clamp(30px,5vw,48px);
-  line-height:1.3;
-  margin-bottom:12px;
-}
-
-.hero h1 span { color:var(--yellow); }
-
-.hero p {
-  color:#fff1e8;
-  line-height:1.8;
-  font-size:14px;
-}
-
-.hero-btn {
-  display:inline-block;
-  margin-top:22px;
-  background:var(--yellow);
-  color:#49220e;
-  padding:12px 23px;
-  border-radius:30px;
-  text-decoration:none;
-  font-weight:700;
-}
-
-.container {
-  width:min(1050px,90%);
-  margin:40px auto;
-}
-
-.section-title {
-  font-size:23px;
-  margin-bottom:8px;
-}
-
-.section-subtitle {
-  color:var(--gray);
-  font-size:13px;
-  margin-bottom:22px;
-}
-
-/* PRODUCT CARDS */
-
-.product-grid {
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-  gap:17px;
-}
-
-.product {
-  background:white;
-  border-radius:19px;
-  padding:20px;
-  box-shadow:0 5px 20px #00000008;
-  border:1px solid #f2e9df;
-  display:flex;
-  flex-direction:column;
-}
-
-.product-icon {
-  background:#fff0e5;
-  height:85px;
-  display:grid;
-  place-items:center;
-  border-radius:15px;
-  font-size:45px;
-  margin-bottom:13px;
-}
-
-.product h3 {
-  font-size:18px;
-  margin-bottom:5px;
-}
-
-.product p {
-  color:var(--gray);
-  font-size:12px;
-  line-height:1.7;
-}
-
-.regular-price {
-  color:var(--gray);
-  font-size:12px;
-  margin-top:5px;
-}
-
-.price-options {
-  display:grid;
-  gap:8px;
-  margin-top:13px;
-}
-
-.buy-btn {
-  width:100%;
-  background:var(--orange);
-  color:white;
-  padding:10px;
-  border-radius:11px;
-  font-size:12px;
-  font-weight:600;
-  transition:.2s;
-}
-
-.buy-btn:hover { background:var(--red); }
-
-.buy-btn.secondary {
-  background:#fff0e5;
-  color:#a83c17;
-  border:1px solid #f5c8ad;
-}
-
-.buy-btn.secondary:hover {
-  background:#ffe0cd;
-}
-
-.stock {
-  display:inline-block;
-  margin-top:9px;
-  background:#e7f8e9;
-  color:var(--green);
-  padding:5px 10px;
-  border-radius:20px;
-  font-size:11px;
-  width:max-content;
-  font-weight:600;
-}
-
-/* DATA TABLE */
-
-.table-wrapper {
-  width:100%;
-  overflow-x:auto;
-  background:white;
-  border-radius:16px;
-  border:1px solid #f0e5d9;
-  box-shadow:0 5px 20px #00000008;
-}
-
-.data-table {
-  width:100%;
-  min-width:650px;
-  border-collapse:collapse;
-  font-size:13px;
-}
-
-.data-table th {
-  background:#fff0e5;
-  color:#9b3518;
-  text-align:left;
-  padding:15px;
-  font-weight:700;
-}
-
-.data-table td {
-  padding:14px 15px;
-  border-bottom:1px solid #f1eee9;
-}
-
-.data-table tr:last-child td { border-bottom:none; }
-
-.data-table tr:hover td { background:#fffaf4; }
-
-.table-price {
-  font-weight:700;
-  color:var(--red);
-}
-
-/* PANELS */
-
-.panel {
-  background:white;
-  border:1px solid #f0e5d9;
-  border-radius:20px;
-  padding:23px;
-  margin-top:22px;
-  box-shadow:0 5px 20px #00000008;
-}
-
-.hidden { display:none!important; }
-
-.order-summary {
-  background:#fff5e9;
-  border:1px dashed var(--orange);
-  padding:17px;
-  border-radius:13px;
-  margin:15px 0;
-  line-height:2;
-  font-size:14px;
-}
-
-.order-summary strong { color:var(--red); }
-
-.wallet-number {
-  background:#fff5e9;
-  border:1px dashed var(--orange);
-  padding:15px;
-  border-radius:13px;
-  margin:15px 0;
+  background:linear-gradient(120deg,#fff0e4,#ffe0c8);
   display:flex;
   justify-content:space-between;
   align-items:center;
-  gap:10px;
+  gap:25px;
   flex-wrap:wrap;
 }
-
-.wallet-number strong {
-  font-size:19px;
-  color:var(--red);
+.hero h1 {
+  font-size:clamp(27px,5vw,44px);
+  margin:0 0 10px;
 }
-
-.copy-btn {
-  background:var(--orange);
-  color:white;
-  padding:9px 15px;
-  border-radius:9px;
-  font-size:12px;
+.hero h1 span {color:var(--orange)}
+.hero p {color:#665b54}
+.hero-icon {font-size:90px}
+.container {
+  width:min(1100px,92%);
+  margin:35px auto;
 }
-
-.info {
-  font-size:13px;
-  color:var(--gray);
-  line-height:1.9;
+.section-title {
+  font-size:23px;
+  font-weight:800;
+  margin-bottom:16px;
 }
-
-.steps {
-  display:grid;
-  gap:13px;
-  margin-top:18px;
-}
-
-.step {
-  display:flex;
-  gap:13px;
-  align-items:flex-start;
-}
-
-.step-number {
-  min-width:32px;
-  height:32px;
-  border-radius:50%;
-  background:var(--yellow);
-  color:#5b310c;
-  display:grid;
-  place-items:center;
-  font-weight:700;
-}
-
-.step p {
-  font-size:13px;
-  color:var(--gray);
-  line-height:1.7;
-}
-
-.line-btn {
-  display:block;
-  text-align:center;
-  background:#06c755;
-  color:white;
-  text-decoration:none;
-  padding:14px;
-  border-radius:13px;
-  font-weight:700;
-  margin-top:18px;
-}
-
-.notice {
-  background:#fff8e4;
-  border-left:4px solid var(--yellow);
-  padding:13px;
-  border-radius:8px;
-  font-size:12px;
-  line-height:1.8;
-  color:#70531c;
-  margin-top:15px;
-}
-
-/* ACCORDION */
-
-.accordion {
-  display:grid;
-  gap:10px;
-  margin-top:18px;
-}
-
-.accordion details {
+.card {
   background:white;
-  border:1px solid #f0e5d9;
-  border-radius:13px;
-  overflow:hidden;
+  border:1px solid var(--border);
+  border-radius:18px;
+  padding:22px;
+  margin-bottom:22px;
+  box-shadow:0 5px 20px #6b34100a;
 }
-
-.accordion summary {
-  list-style:none;
-  cursor:pointer;
-  padding:16px;
-  font-size:14px;
-  font-weight:600;
+.budget-head {
   display:flex;
   justify-content:space-between;
   align-items:center;
+  flex-wrap:wrap;
   gap:10px;
 }
-
-.accordion summary::-webkit-details-marker { display:none; }
-
-.accordion summary::after {
-  content:"+";
-  font-size:22px;
+.budget-value {
   color:var(--orange);
+  font-size:28px;
+  font-weight:800;
 }
-
-.accordion details[open] summary::after { content:"−"; }
-
-.accordion details[open] summary {
-  color:var(--orange);
-  background:#fffaf4;
+input[type=range] {
+  width:100%;
+  accent-color:var(--orange);
+  margin:22px 0 10px;
 }
-
-.accordion-content {
-  padding:0 16px 16px;
+.range-labels {
+  display:flex;
+  justify-content:space-between;
   color:var(--gray);
-  font-size:13px;
-  line-height:1.9;
-}
-
-/* FOOTER */
-
-footer {
-  background:#2b211d;
-  color:white;
-  text-align:center;
-  padding:30px 15px;
-  margin-top:55px;
-}
-
-footer p {
-  color:#cbbdb6;
   font-size:12px;
-  line-height:2;
 }
-
-/* MODAL */
-
-.modal {
+.foxzy-box {
+  background:linear-gradient(120deg,#fff0e5,#fff9f4);
+  border:1px solid #ffd2b8;
+  border-radius:18px;
+  padding:20px;
+  display:flex;
+  gap:15px;
+  align-items:flex-start;
+}
+.foxzy-avatar {
+  font-size:42px;
+  background:white;
+  border-radius:15px;
+  padding:8px;
+}
+.foxzy-box h3 {
+  margin:0 0 5px;
+  color:var(--orange);
+}
+.foxzy-box p {margin:4px 0;font-size:14px}
+.foxzy-result {
+  margin-top:12px;
+  background:white;
+  padding:13px;
+  border-radius:12px;
+  font-weight:600;
+}
+.product-grid {
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(190px,1fr));
+  gap:15px;
+}
+.product {
+  background:white;
+  border:1px solid var(--border);
+  border-radius:17px;
+  padding:18px;
+  transition:.2s;
+}
+.product:hover {
+  transform:translateY(-3px);
+  box-shadow:0 8px 20px #00000010;
+}
+.product-icon {font-size:30px}
+.product h3 {margin:8px 0 3px}
+.product .price {
+  font-size:23px;
+  font-weight:800;
+  color:var(--orange);
+}
+.product small {color:var(--gray)}
+.primary-btn {
+  width:100%;
+  border:0;
+  border-radius:11px;
+  padding:11px;
+  color:white;
+  background:var(--orange);
+  font-weight:700;
+  margin-top:12px;
+}
+.primary-btn:hover {background:#d94b16}
+.secondary-btn {
+  background:#fff0e5;
+  color:var(--orange);
+  border:1px solid #ffd0b5;
+  border-radius:10px;
+  padding:10px 15px;
+  font-weight:600;
+}
+table {
+  width:100%;
+  border-collapse:collapse;
+  font-size:14px;
+}
+th,td {
+  padding:12px 9px;
+  border-bottom:1px solid var(--border);
+  text-align:center;
+}
+th {background:#fff1e7;color:#9d421b}
+.order-info {
+  background:#fff8f1;
+  padding:15px;
+  border-radius:12px;
+  margin-top:12px;
+}
+.order-info strong {color:var(--orange)}
+.method {
+  padding:14px;
+  background:#fff8f1;
+  border-radius:12px;
+  margin:10px 0;
+}
+.method b {color:var(--orange)}
+footer {
+  background:#28211d;
+  color:white;
+  padding:30px 6%;
+  text-align:center;
+  margin-top:45px;
+}
+footer a {color:#ffad7f}
+.modal-bg {
+  display:none;
   position:fixed;
   inset:0;
-  z-index:40;
   background:#0009;
-  display:grid;
-  place-items:center;
-  padding:18px;
+  z-index:20;
+  justify-content:center;
+  align-items:center;
+  padding:15px;
 }
-
-.modal-box {
-  width:min(440px,100%);
+.modal {
   background:white;
-  padding:25px;
-  border-radius:20px;
-  text-align:center;
+  border-radius:18px;
+  padding:23px;
+  width:min(420px,100%);
 }
-
-.modal-box h2 {
-  color:var(--orange);
-  margin-bottom:10px;
+.modal h2 {margin-top:0}
+.close-btn {
+  float:right;
+  border:0;
+  background:#fff0e5;
+  border-radius:8px;
+  padding:6px 11px;
 }
-
-.modal-box p {
-  font-size:13px;
+.empty {
   color:var(--gray);
-  line-height:1.8;
+  padding:20px;
+  text-align:center;
+  grid-column:1/-1;
 }
-
-.modal-box button {
-  width:100%;
-  padding:12px;
-  background:var(--orange);
-  color:white;
-  border-radius:10px;
-  margin-top:18px;
-}
-
-@media(max-width:500px) {
-  header { padding:10px 4%; }
-
-  .brand { font-size:18px; }
-
-  .brand img {
-    width:38px;
-    height:38px;
-  }
-
-  .header-contact {
-    padding:8px 12px;
-    font-size:12px;
-  }
-
-  .hero {
-    min-height:280px;
-    padding:40px 6%;
-  }
-
-  .product-grid {
-    grid-template-columns:repeat(2,minmax(0,1fr));
-    gap:11px;
-  }
-
-  .product { padding:13px; }
-
-  .product-icon {
-    height:70px;
-    font-size:38px;
-  }
-
-  .product h3 { font-size:15px; }
-
-  .buy-btn { font-size:11px; padding:9px 5px; }
-
-  .container { width:92%; }
-
-  .panel { padding:16px; }
+@media(max-width:600px) {
+  header {padding:12px 4%}
+  nav {gap:9px}
+  nav a {font-size:11px}
+  .hero {padding:38px 6%}
+  .hero-icon {font-size:65px}
+  .card {padding:16px}
+  th,td {padding:9px 5px;font-size:12px}
 }
 </style>
 </head>
 
 <body>
 
-<!-- SIDEBAR -->
-<div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar(false)"></div>
-
-<aside class="sidebar" id="sidebar">
-  <div class="sidebar-top">
-    <h2>🦊 IcEfOzxy Menu</h2>
-    <button class="close-sidebar" onclick="toggleSidebar(false)">×</button>
-  </div>
-
-  <p class="sidebar-label">เมนูหลัก</p>
-  <a href="#home" onclick="toggleSidebar(false)">🏠 หน้าแรก</a>
-  <a href="#products" onclick="toggleSidebar(false)">🛒 แพ็กเกจ Robux</a>
-  <a href="#dataTable" onclick="toggleSidebar(false)">📊 ตารางราคา</a>
-  <a href="#order" onclick="toggleSidebar(false)">📦 รายการสั่งซื้อ</a>
-  <a href="#howto" onclick="toggleSidebar(false)">📌 วิธีใช้บริการ</a>
-  <a href="#faq" onclick="toggleSidebar(false)">❓ คำถามที่พบบ่อย</a>
-  <a href="https://lin.ee/QnALKLF" target="_blank" rel="noopener">💬 ติดต่อ LINE OA</a>
-
-  <div class="sidebar-footer">
-    Angely Foxy Topup<br>
-    ร้านเติมเกมของเจ้าจิ้งจอกเอง 🦊
-  </div>
-</aside>
-
 <header>
-  <div class="header-left">
-    <button class="menu-toggle" onclick="toggleSidebar()" aria-label="เปิดเมนู">☰</button>
-    <div class="brand">
-      <img src="images/icon.png" alt="IcEfOzxy Logo">
-      <div>Ice<span>fOzxy</span></div>
-    </div>
-  </div>
-
-  <a class="header-contact" href="https://lin.ee/QnALKLF" target="_blank" rel="noopener">
-    ติดต่อร้าน
-  </a>
+  <div class="logo">🦊 IcEfOzxy <span>Topup</span></div>
+  <nav>
+    <a href="#shop">ร้านค้า</a>
+    <a href="#price">ตารางราคา</a>
+    <a href="#howto">วิธีสั่งซื้อ</a>
+  </nav>
 </header>
 
-<section class="hero" id="home">
-  <div class="hero-content">
-    <h1>Welcome to<br><span>IcEfOzxy Topup</span></h1>
-    <p>
-      ร้านเติมเกมของเจ้าจิ้งจอกเอง 🦊<br>
-      สะดวก ใส่ใจทุกออเดอร์ พร้อมให้บริการ
-      ถ้าหากต้องการเติมแพ็คอื่นให้ทัก Line OA
-    </p>
-    <a href="#products" class="hero-btn">เลือกแพ็กเกจเลย</a>
+<section class="hero">
+  <div>
+    <h1>Angely <span>Foxy</span><br>Topup Shop 🦊</h1>
+    <p>ร้านเติม Robux เลือกแพ็กเกจที่เหมาะกับงบของคุณ</p>
+    <a href="#shop">
+      <button class="primary-btn" style="width:auto;padding:12px 25px">
+        เลือกแพ็กเกจเลย
+      </button>
+    </a>
   </div>
+  <div class="hero-icon">🦊</div>
 </section>
 
 <main class="container">
 
-  <!-- PRODUCTS -->
-  <section id="products">
-    <h2 class="section-title">🛒 Roblox Robux</h2>
-    <p class="section-subtitle">
-      เลือกแพ็กเกจที่ต้องการ ราคาจะแสดงตามวิธีเติม
-    </p>
+  <section class="card">
+    <div class="budget-head">
+      <div>
+        <div class="section-title">💰 เลือกงบประมาณของคุณ</div>
+        <div style="color:#777;font-size:13px">
+          เลื่อน Slider เพื่อกำหนดงบที่ต้องการ
+        </div>
+      </div>
+      <div class="budget-value" id="budgetText">฿100</div>
+    </div>
 
-    <div class="product-grid" id="productGrid"></div>
+    <input
+      type="range"
+      id="budgetSlider"
+      min="6"
+      max="200"
+      step="1"
+      value="100"
+      oninput="updateBudget()"
+    >
 
-    <div class="notice">
-      หมายเหตุ: แพ็กเกจ Username เป็นบริการที่มีเงื่อนไข Roblox Plus
-      ตามรายละเอียดของร้าน โปรดตรวจสอบเงื่อนไขและค่าใช้จ่ายที่เกี่ยวข้องก่อนสั่งซื้อ
+    <div class="range-labels">
+      <span>฿6</span>
+      <span>฿200</span>
     </div>
   </section>
 
-  <!-- DATA TABLE -->
-  <section id="dataTable" style="margin-top:45px">
-    <h2 class="section-title">📊 ตารางราคาแพ็กเกจ</h2>
-    <p class="section-subtitle">
-      เปรียบเทียบจำนวน Robux ราคาปกติ และราคาแยกตามวิธีเติม
-    </p>
+  <section class="foxzy-box">
+    <div class="foxzy-avatar">🦊</div>
+    <div style="flex:1">
+      <h3>Foxzy AI Assistant</h3>
+      <p><b>มีงบเท่าไหร่เดี๋ยว Foxzy จัดให้!</b></p>
+      <p>Foxzy จะช่วยค้นหาแพ็กเกจที่เหมาะสมกับงบของคุณ</p>
+      <div class="foxzy-result" id="foxzyResult">
+        กำลังค้นหาแพ็กเกจ...
+      </div>
+    </div>
+  </section>
 
-    <div class="table-wrapper">
-      <table class="data-table">
+  <section id="shop" style="margin-top:35px">
+    <div class="section-title">🛍️ เลือกแพ็กเกจ Robux</div>
+    <p style="font-size:13px;color:#777">
+      แสดงแพ็กเกจที่มีราคาไม่เกินงบประมาณของคุณ
+    </p>
+    <div class="product-grid" id="productGrid"></div>
+  </section>
+
+  <section id="price" style="margin-top:40px">
+    <div class="section-title">📋 ตารางราคา</div>
+    <div class="card" style="overflow-x:auto">
+      <table>
         <thead>
           <tr>
-            <th>แพ็กเกจ</th>
-            <th>ราคาปกติ</th>
-            <th>UID</th>
-            <th>ID-PASS</th>
+            <th>Robux</th>
+            <th>ราคา</th>
+            <th>เลือก</th>
           </tr>
         </thead>
         <tbody id="priceTable"></tbody>
@@ -712,302 +340,274 @@ footer p {
     </div>
   </section>
 
-  <!-- ORDER -->
-  <section id="order" class="panel hidden">
-    <h2 class="section-title">🦊 สรุปรายการสั่งซื้อ</h2>
-    <p class="section-subtitle">ตรวจสอบแพ็กเกจก่อนติดต่อแอดมิน</p>
-
-    <div class="order-summary">
-      สินค้า: <strong id="summaryRobux">-</strong><br>
-      วิธีเติม: <strong id="summaryMethod">-</strong><br>
-      ราคา: <strong id="summaryPrice">-</strong>
-    </div>
-
-    <div class="panel">
-      <h3>💰 ช่องทางชำระเงิน</h3>
-      <p class="info">TrueMoney Wallet</p>
-
-      <div class="wallet-number">
-        <strong>065-624-3549</strong>
-        <button class="copy-btn" onclick="copyWallet()">คัดลอกเบอร์</button>
+  <section id="order" style="margin-top:35px">
+    <div class="section-title">🧾 สรุปรายการของคุณ</div>
+    <div class="card">
+      <div id="orderInfo" class="order-info">
+        ยังไม่ได้เลือกแพ็กเกจ
       </div>
-
-      <p class="info">ชื่อบัญชีผู้รับ: วริทธิ์นันท์ โชติช่วง</p>
-    </div>
-
-    <div class="panel">
-      <h3>📋 ขั้นตอนการสั่งซื้อ</h3>
-
-      <div class="steps">
-        <div class="step"><span class="step-number">1</span><p>เลือกแพ็กเกจและตรวจสอบราคา</p></div>
-        <div class="step"><span class="step-number">2</span><p>ชำระเงินตามยอดที่เลือก</p></div>
-        <div class="step"><span class="step-number">3</span><p>ส่งสลิปและแจ้งรายละเอียดแพ็กเกจผ่าน LINE OA</p></div>
-        <div class="step"><span class="step-number">4</span><p>รอแอดมินตรวจสอบและดำเนินการ</p></div>
-      </div>
-
-      <a id="lineOrder" class="line-btn" href="https://lin.ee/QnALKLF" target="_blank" rel="noopener">
-        ติดต่อแอดมินผ่าน LINE
-      </a>
-
-      <div class="notice">
-        กรุณารอแอดมินตรวจสอบยอดเงินที่ได้รับจริงก่อนดำเนินการ
-        การส่งสลิปเพียงอย่างเดียวไม่ได้ยืนยันว่าชำระเงินสำเร็จ
-      </div>
+      <button class="primary-btn" onclick="openOrder()">
+        ดำเนินการสั่งซื้อ
+      </button>
     </div>
   </section>
 
-  <!-- HOW TO -->
-  <section class="panel" id="howto">
-    <h2 class="section-title">📌 วิธีใช้บริการ</h2>
-    <div class="steps">
-      <div class="step"><span class="step-number">1</span><p>เลือกแพ็กเกจ Robux ที่ต้องการ</p></div>
-      <div class="step"><span class="step-number">2</span><p>ตรวจสอบราคาและวิธีเติม</p></div>
-      <div class="step"><span class="step-number">3</span><p>ติดต่อแอดมินเพื่อดำเนินการสั่งซื้อ</p></div>
-      <div class="step"><span class="step-number">4</span><p>รอแอดมินตรวจสอบและส่งมอบ Robux</p></div>
+  <section id="howto" style="margin-top:35px">
+    <div class="section-title">📌 วิธีสั่งซื้อ</div>
+
+    <div class="method">
+      <b>1. เลือกแพ็กเกจ</b>
+      <p>เลือกจำนวน Robux และตรวจสอบราคาให้เรียบร้อย</p>
+    </div>
+
+    <div class="method">
+      <b>2. ติดต่อร้านค้า</b>
+      <p>กดปุ่มสั่งซื้อและติดต่อผ่าน LINE OA</p>
+    </div>
+
+    <div class="method">
+      <b>3. รอแอดมินตรวจสอบ</b>
+      <p>รอแอดมินยืนยันรายการก่อนดำเนินการ</p>
+    </div>
+
+    <div class="method">
+      <b>🔒 ข้อควรระวัง</b>
+      <p>ห้ามส่งรหัสผ่านหรือ OTP ให้บุคคลอื่นเด็ดขาด</p>
     </div>
   </section>
 
-  <!-- ACCORDION -->
-  <section class="panel" id="faq">
-    <h2 class="section-title">❓ คำถามที่พบบ่อย</h2>
-    <p class="section-subtitle">กดหัวข้อเพื่ออ่านรายละเอียดเพิ่มเติม</p>
-
-    <div class="accordion">
-
-      <details>
-        <summary>🦊 ต้องเริ่มสั่งซื้ออย่างไร?</summary>
-        <div class="accordion-content">
-          เลือกแพ็กเกจที่ต้องการ ตรวจสอบราคา
-          จากนั้นติดต่อแอดมินผ่าน LINE OA เพื่อแจ้งรายการสั่งซื้อ
-        </div>
-      </details>
-
-      <details>
-        <summary>💰 ชำระเงินผ่านช่องทางใด?</summary>
-        <div class="accordion-content">
-          ร้านแจ้งช่องทาง TrueMoney Wallet ในส่วนสรุปรายการสั่งซื้อ
-          โปรดตรวจสอบชื่อผู้รับและยอดเงินก่อนชำระทุกครั้ง
-        </div>
-      </details>
-
-      <details>
-        <summary>📦 ถ้าต้องการแพ็กเกจอื่นทำอย่างไร?</summary>
-        <div class="accordion-content">
-          สามารถติดต่อร้านผ่าน LINE OA เพื่อสอบถามแพ็กเกจอื่น
-          และตรวจสอบราคาและเงื่อนไขก่อนสั่งซื้อได้
-        </div>
-      </details>
-
-      <details>
-        <summary>⏳ หลังชำระเงินต้องทำอย่างไร?</summary>
-        <div class="accordion-content">
-          ติดต่อแอดมินพร้อมแจ้งรายการสั่งซื้อ
-          และรอแอดมินตรวจสอบยอดเงินที่ได้รับจริงก่อนดำเนินการ
-        </div>
-      </details>
-
-      <details>
-        <summary>🔐 ร้านต้องการรหัสผ่านหรือ OTP หรือไม่?</summary>
-        <div class="accordion-content">
-          อย่าส่งรหัสผ่านหรือ OTP ผ่านเว็บไซต์หรือแชต
-          รหัสเหล่านี้เป็นข้อมูลลับที่ใช้ปกป้องบัญชีของคุณ
-          ควรใช้ช่องทางเติมเงินที่ไม่ต้องเปิดเผยข้อมูลเข้าสู่ระบบ
-        </div>
-      </details>
-
+  <section style="margin-top:35px">
+    <div class="section-title">❓ คำถามที่พบบ่อย</div>
+    <div class="card">
+      <b>Foxzy AI เป็น AI จริงหรือไม่?</b>
+      <p style="font-size:13px;color:#777">
+        ปัจจุบัน Foxzy เป็นระบบแนะนำแพ็กเกจอัตโนมัติภายในเว็บไซต์
+      </p>
+      <hr style="border:0;border-top:1px solid #eee">
+      <b>ถ้าไม่มีแพ็กเกจตรงกับงบทำอย่างไร?</b>
+      <p style="font-size:13px;color:#777">
+        ลองปรับงบประมาณด้วย Slider เพื่อดูแพ็กเกจอื่น ๆ
+      </p>
+      <hr style="border:0;border-top:1px solid #eee">
+      <b>ต้องส่งรหัสผ่าน Roblox หรือไม่?</b>
+      <p style="font-size:13px;color:#777">
+        ไม่ควรส่งรหัสผ่านหรือ OTP ให้ใคร
+      </p>
     </div>
   </section>
 
 </main>
 
 <footer>
-  <h3>🦊 IcEfOzxy Topup</h3>
-  <p>Angely Foxy Topup</p>
-  <p>ร้านเติมเกมของเจ้าจิ้งจอกเอง สะดวก ใส่ใจทุกออเดอร์</p>
-  <p>© 2026 IcEfOzxy Topup</p>
+  <div style="font-size:22px;font-weight:800">🦊 IcEfOzxy Topup</div>
+  <p>Angely Foxy Topup Shop</p>
+  <p>ติดต่อร้านค้า</p>
+  <a href="https://lin.ee/QnALKLF" target="_blank" rel="noopener">
+    LINE Official Account
+  </a>
+  <p style="font-size:11px;color:#bbb">
+    © 2026 IcEfOzxy Topup. All rights reserved.
+  </p>
 </footer>
 
-<!-- MODAL -->
-<div id="successModal" class="modal hidden">
-  <div class="modal-box">
-    <h2>เรียบร้อยแล้ว! 🦊</h2>
-    <p id="modalMessage">ดำเนินการสำเร็จ</p>
-    <button onclick="closeModal()">ตกลง</button>
+<div class="modal-bg" id="orderModal">
+  <div class="modal">
+    <button class="close-btn" onclick="closeModal()">ปิด ✕</button>
+    <h2>🦊 ยืนยันรายการ</h2>
+    <div id="modalInfo"></div>
+    <p style="font-size:12px;color:#777">
+      กรุณาตรวจสอบแพ็กเกจและราคาอีกครั้งก่อนติดต่อร้านค้า
+    </p>
+    <a
+      href="https://lin.ee/QnALKLF"
+      target="_blank"
+      rel="noopener"
+      style="text-decoration:none"
+    >
+      <button class="primary-btn">ติดต่อผ่าน LINE OA</button>
+    </a>
   </div>
 </div>
 
 <script>
-
-/* PRODUCT DATABASE
-   ราคาทั้งหมดเป็นเงินบาท
-*/
-
+/* PRODUCT DATABASE — ราคาเป็นเงินบาท */
 const products = [
-  { robux:10,  regular:7,   uid:6,   pass:null },
-  { robux:20,  regular:13,  uid:12,  pass:null },
-  { robux:50,  regular:35,  uid:24,  pass:null },
-  { robux:80,  regular:40,  uid:32,  pass:31 },
-  { robux:100, regular:50,  uid:39,  pass:null },
-  { robux:120, regular:60,  uid:49,  pass:50 },
-  { robux:150, regular:75,  uid:59,  pass:60 },
-  { robux:160, regular:80,  uid:59,  pass:60 },
-  { robux:200, regular:100, uid:84,  pass:80 },
-  { robux:240, regular:120, uid:88,  pass:89 },
-  { robux:250, regular:125, uid:107, pass:109 },
-  { robux:280, regular:140, uid:109, pass:108 },
-  { robux:320, regular:160, uid:122, pass:120 },
-  { robux:350, regular:175, uid:143, pass:141 },
-  { robux:400, regular:200, uid:162, pass:146 }
+  {robux:10,regular:7,uid:6,pass:null},
+  {robux:20,regular:13,uid:12,pass:null},
+  {robux:50,regular:35,uid:24,pass:null},
+  {robux:80,regular:40,uid:32,pass:31},
+  {robux:100,regular:50,uid:39,pass:null},
+  {robux:120,regular:60,uid:49,pass:50},
+  {robux:150,regular:75,uid:59,pass:60},
+  {robux:160,regular:80,uid:59,pass:60},
+  {robux:200,regular:100,uid:84,pass:80},
+  {robux:240,regular:120,uid:88,pass:89},
+  {robux:250,regular:125,uid:107,pass:109},
+  {robux:280,regular:140,uid:109,pass:108},
+  {robux:320,regular:160,uid:122,pass:120},
+  {robux:350,regular:175,uid:143,pass:141},
+  {robux:400,regular:200,uid:162,pass:146}
 ];
 
-let selectedPackage = null;
+let selectedProduct = null;
 
-/* CREATE PRODUCT CARDS */
+const slider = document.getElementById("budgetSlider");
 
-function renderProducts() {
-  const grid = document.getElementById("productGrid");
-
-  grid.innerHTML = products.map(product => {
-    let buttons = `
-      <button class="buy-btn"
-        onclick="selectPackage(${product.robux},'UID',${product.uid})">
-        UID — เริ่มต้น ฿${product.uid.toFixed(2)}
-      </button>
-    `;
-
-    if (product.pass !== null) {
-      buttons += `
-        <button class="buy-btn secondary"
-          onclick="selectPackage(${product.robux},'ID-PASS',${product.pass})">
-          ID-PASS — เริ่มต้น ฿${product.pass.toFixed(2)}
-        </button>
-      `;
-    }
-
-    return `
-      <article class="product">
-        <div class="product-icon">🪙</div>
-        <h3>${product.robux} Robux</h3>
-        <p>เลือกวิธีเติมเกมที่ต้องการ</p>
-        <div class="regular-price">
-          ราคาปกติ ฿${product.regular.toFixed(2)}
-        </div>
-        <span class="stock">● มีตัวเลือก</span>
-        <div class="price-options">
-          ${buttons}
-        </div>
-      </article>
-    `;
-  }).join("");
+function getBudget() {
+  return Number(slider.value);
 }
 
-/* CREATE PRICE TABLE */
+function updateBudget() {
+  document.getElementById("budgetText").textContent =
+    "฿" + getBudget();
+
+  renderProducts();
+  updateFoxzy();
+}
+
+function renderProducts() {
+  const budget = getBudget();
+
+  const available = products.filter(
+    product => product.regular <= budget
+  );
+
+  const grid = document.getElementById("productGrid");
+
+  if (available.length === 0) {
+    grid.innerHTML =
+      '<div class="empty">ยังไม่มีแพ็กเกจในงบนี้ 🦊</div>';
+    return;
+  }
+
+  grid.innerHTML = available.map(product => `
+    <div class="product">
+      <div class="product-icon">🪙</div>
+      <h3>${product.robux} Robux</h3>
+      <div class="price">฿${product.regular}</div>
+      <small>แพ็กเกจเติม Robux</small>
+      <button
+        class="primary-btn"
+        onclick="selectPackage(${product.robux})"
+      >
+        เลือกแพ็กเกจนี้
+      </button>
+    </div>
+  `).join("");
+}
 
 function renderPriceTable() {
-  const tbody = document.getElementById("priceTable");
+  const table = document.getElementById("priceTable");
 
-  tbody.innerHTML = products.map(product => `
+  table.innerHTML = products.map(product => `
     <tr>
       <td>${product.robux} Robux</td>
-      <td>฿${product.regular.toFixed(2)}</td>
-      <td class="table-price">฿${product.uid.toFixed(2)}</td>
-      <td class="table-price">
-        ${product.pass === null
-          ? "ยังไม่มีตัวเลือก"
-          : "฿" + product.pass.toFixed(2)}
+      <td style="color:#f15b22;font-weight:700">
+        ฿${product.regular}
+      </td>
+      <td>
+        <button
+          class="secondary-btn"
+          onclick="selectPackage(${product.robux})"
+        >
+          เลือก
+        </button>
       </td>
     </tr>
   `).join("");
 }
 
-/* SIDEBAR */
+function updateFoxzy() {
+  const budget = getBudget();
 
-function toggleSidebar(force) {
-  const sidebar = document.getElementById("sidebar");
-  const overlay = document.getElementById("sidebarOverlay");
+  const available = products
+    .filter(product => product.regular <= budget)
+    .sort((a,b) => {
+      if (b.robux !== a.robux) {
+        return b.robux - a.robux;
+      }
+      return a.regular - b.regular;
+    });
 
-  const shouldOpen = typeof force === "boolean"
-    ? force
-    : !sidebar.classList.contains("active");
+  const result = document.getElementById("foxzyResult");
 
-  sidebar.classList.toggle("active", shouldOpen);
-  overlay.classList.toggle("active", shouldOpen);
-  document.body.classList.toggle("menu-open", shouldOpen);
+  if (available.length === 0) {
+    result.innerHTML =
+      "งบ ฿" + budget +
+      " ยังไม่มีแพ็กเกจที่ตรงเงื่อนไข ลองเพิ่มงบอีกนิดนะ!";
+    return;
+  }
+
+  const best = available[0];
+
+  result.innerHTML = `
+    ✨ Foxzy แนะนำแพ็กเกจนี้!<br>
+    <span style="font-size:23px;color:#f15b22">
+      ${best.robux} Robux
+    </span><br>
+    ราคา ฿${best.regular}<br>
+    <span style="font-size:12px;color:#777">
+      เหลืองบอีก ฿${budget - best.regular}
+    </span>
+    <button
+      class="primary-btn"
+      onclick="selectPackage(${best.robux})"
+    >
+      เลือกตามที่ Foxzy แนะนำ
+    </button>
+  `;
 }
 
-/* SELECT PACKAGE */
+function selectPackage(robux) {
+  selectedProduct = products.find(
+    product => product.robux === robux
+  );
 
-function selectPackage(robux, method, price) {
-  selectedPackage = { robux, method, price };
+  if (!selectedProduct) return;
 
-  document.getElementById("summaryRobux").textContent =
-    robux + " Robux";
+  document.getElementById("orderInfo").innerHTML = `
+    <strong>แพ็กเกจที่เลือก</strong><br>
+    ${selectedProduct.robux} Robux<br>
+    <strong>ราคา ฿${selectedProduct.regular}</strong>
+  `;
 
-  document.getElementById("summaryMethod").textContent = method;
-
-  document.getElementById("summaryPrice").textContent =
-    "฿" + price.toFixed(2);
-
-  const message =
-    "สวัสดีครับ สนใจสั่งซื้อ IcEfOzxy Topup\n" +
-    "สินค้า: " + robux + " Robux\n" +
-    "วิธีเติม: " + method + "\n" +
-    "ราคา: " + price.toFixed(2) + " บาท\n" +
-    "ขอแจ้งรายละเอียดการสั่งซื้อครับ";
-
-  const lineUrl =
-    "https://line.me/R/oaMessage/@QnALKLF/?" +
-    encodeURIComponent(message);
-
-  document.getElementById("lineOrder").href = lineUrl;
-
-  const order = document.getElementById("order");
-  order.classList.remove("hidden");
-
-  order.scrollIntoView({
-    behavior:"smooth",
-    block:"start"
+  document.getElementById("order").scrollIntoView({
+    behavior:"smooth"
   });
 }
 
-/* COPY WALLET */
-
-async function copyWallet() {
-  const number = "0656243549";
-
-  try {
-    await navigator.clipboard.writeText(number);
-    showModal("คัดลอกเบอร์ TrueMoney Wallet แล้ว!");
-  } catch (error) {
-    showModal("กรุณาคัดลอกเบอร์ 065-624-3549 ด้วยตนเอง");
+function openOrder() {
+  if (!selectedProduct) {
+    alert("กรุณาเลือกแพ็กเกจก่อนนะ 🦊");
+    return;
   }
-}
 
-/* MODAL */
+  document.getElementById("modalInfo").innerHTML = `
+    <div class="order-info">
+      <strong>แพ็กเกจ:</strong>
+      ${selectedProduct.robux} Robux<br>
+      <strong>ราคา:</strong>
+      ฿${selectedProduct.regular}
+    </div>
+  `;
 
-function showModal(message) {
-  document.getElementById("modalMessage").textContent = message;
-  document.getElementById("successModal").classList.remove("hidden");
+  document.getElementById("orderModal").style.display =
+    "flex";
 }
 
 function closeModal() {
-  document.getElementById("successModal").classList.add("hidden");
+  document.getElementById("orderModal").style.display =
+    "none";
 }
 
-/* KEYBOARD */
-
-document.addEventListener("keydown", function(event) {
-  if (event.key === "Escape") {
-    toggleSidebar(false);
-    closeModal();
-  }
-});
-
-/* INITIALIZE */
+document.getElementById("orderModal")
+  .addEventListener("click", function(event) {
+    if (event.target === this) closeModal();
+  });
 
 renderProducts();
 renderPriceTable();
-
+updateFoxzy();
 </script>
 
 </body>
